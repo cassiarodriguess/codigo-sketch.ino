@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "author": "Gabriel Agles",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard", "id": "bb1", "top": -118.2, "left": -237.2, "attrs": {} },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 105.6, "left": 24.04, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": 92.4, "left": 234.2, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -7.2,
+      "left": 40.2,
+      "attrs": { "volume": "0.1" }
+    },
+    { "type": "board-ds18b20", "id": "temp1", "top": 85.27, "left": -159.12, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 99.95,
+      "left": 163.2,
+      "attrs": { "value": "330000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 147.95,
+      "left": -76.8,
+      "attrs": { "value": "4700" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "temp1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "bz1:1", "esp:16", "green", [ "v0" ] ],
+    [ "bz1:2", "esp:GND.3", "green", [ "v0" ] ],
+    [ "bz1:1", "bb1:bn.24", "", [ "$bb" ] ],
+    [ "bz1:2", "bb1:bn.25", "", [ "$bb" ] ],
+    [ "r2:2", "led1:C", "green", [ "v0" ] ],
+    [ "r2:1", "esp:GND.2", "green", [ "v0" ] ],
+    [ "esp:17", "led1:A", "green", [ "h0" ] ],
+    [ "temp1:DQ", "esp:13", "green", [ "v0" ] ],
+    [ "temp1:VCC", "r1:1", "red", [ "v0" ] ],
+    [ "r1:2", "esp:3V3", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
